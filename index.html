@@ -370,6 +370,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  
     <!-- ======= End of Contact Section ======= -->
  
+    <section id="services" class="services section-bg">
+      <div class="container">
+	<form id="my-form" method="POST" >
+	  <label>Email:</label>
+	  <input type="email" name="email" />
+	  <label>Message:</label>
+	  <input type="text" name="message" />
+	  <button id="my-form-button">Submit</button>
+	  <p id="sendMessage"></p>
+	</form>
+
+	<!-- Place this script at the end of the body tag -->
+
+	<script>
+	  	var message = "";
+
+		$("#sendMessage").on("click", function() {
+		    message = $("#contactform").serialize();
+		    $.ajax({
+			url: "//formspree.io/f/mzbkzdep", 
+			method: "POST",
+			data: {message: message},
+			dataType: "json"
+			action: "https://ednition.github.io/testsite/thankyou/index.html" 
+		    });
+
+		    return false;
+		});
+	</script>
+      </div>			    
+    </section>	
+				     
  
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
