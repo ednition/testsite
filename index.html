@@ -372,14 +372,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  
     <section id="services" class="services section-bg">
       <div class="container">
-	<form id="contactform" method="POST" >
-	  <label>Email:</label>
-	  <input type="email" name="email" />
-	  <label>Message:</label>
-	  <input type="text" name="message" />
-	  <button id="my-form-button">Submit</button>
-	  <p id="sendMessage"></p>
-	</form>
+            <form id="my-form" style="background-color:#3c4d5c; border: 4px solid #42CCAD; border-radius: 5px;" method="POST" role="form" class="php-email-form aos-init aos-animate" data-aos="fade-up">
+
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="comments" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+
+              <div class="text-center"><button id="my-form-button" class="p-2" type="submit" style="border-radius: 5px; background-color:#fdc134; width:50%;">Submit</button></div>
+              <p id="my-form-status"></p>
+            </form>
 
 	<!-- Place this script at the end of the body tag -->
 
@@ -389,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		$("#sendMessage").on("click", function() {
 		    message = $("#contactform").serialize();
 		    $.ajax({
-			url: "//formspree.io/f/mzbkzdep", 
+			url: "https://formspree.io/f/mzbkzdep", 
 			method: "POST",
 			data: {message: message},
 			dataType: "json"
