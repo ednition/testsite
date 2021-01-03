@@ -401,8 +401,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	<script>
 	  	var message = "";
-
-		$("#sendMessage").on("click", function() {
+		
+		$("#sendMessage").click(function() {
 		    message = $("#contactform").serialize();
 		    $.ajax({
 			url: "//formspree.io/f/mzbkzdep", 
