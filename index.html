@@ -372,30 +372,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  
     <section id="services" class="services section-bg">
       <div class="container">
-            <form id="contactform" style="background-color:#3c4d5c; border: 4px solid #42CCAD; border-radius: 5px;" method="POST" role="form" class="php-email-form aos-init aos-animate" data-aos="fade-up">
-		<input type="hidden" name="_next" value="//ednition.github.io/testsite/thankyou/index.html" />
-              <div class="form-row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>
-                </div>
-                <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="comments" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                <div class="validate"></div>
-              </div>
-
-              <div class="text-center"><button id="sendMessage" class="p-2" style="border-radius: 5px; background-color:#fdc134; width:50%;">Submit</button></div>
-              <p id="my-form-status"></p>
-            </form>
+        <form id="my-form"
+	  action="https://formspree.io/f/mzbkzdep"
+	  method="POST"
+	>
+	  <label>Email:</label>
+	  <input type="email" name="email" />
+	  <label>Message:</label>
+	  <input type="text" name="message" />
+	  <button id="my-form-button">Submit</button>
+	  <p id="my-form-status"></p>
+	</form>
 
       </div>			    
     </section>	
@@ -1037,7 +1024,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	});
 </script>
 					
-					
+
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+
+    // get the form elements defined in your form HTML above
+    
+    var form = document.getElementById("my-form");
+    var button = document.getElementById("my-form-button");
+    var status = document.getElementById("my-form-status");
+
+    // Success and Error functions for after the form is submitted
+    
+    function success() {
+      form.reset();
+      button.style = "display: none ";
+      status.innerHTML = "Thanks!";
+    }
+
+    function error() {
+      status.innerHTML = "Oops! There was a problem.";
+    }
+
+    // handle the form submission event
+
+    form.addEventListener("submit", function(ev) {
+      ev.preventDefault();
+      var data = new FormData(form);
+      ajax(form.method, form.action, data, success, error);
+    });
+  });
+  
+  // helper function for sending an AJAX request
+
+  function ajax(method, url, data, success, error) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+      if (xhr.status === 200) {
+        success(xhr.response, xhr.responseType);
+      } else {
+        error(xhr.status, xhr.response, xhr.responseType);
+      }
+    };
+    xhr.send(data);
+    window.location = '//ednition.github.io/testsite/thankyou/index.html';
+    // return false;
+  }
+						     
+						     
+</script>				
+				
 </body>
                                  
 
