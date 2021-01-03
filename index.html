@@ -397,23 +397,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <p id="my-form-status"></p>
             </form>
 
-	<!-- Place this script at the end of the body tag -->
-
-	<script>
-	  	var message = "";
-		
-		$("#sendMessage").click(function() {
-		    message = $("#contactform").serialize();
-		    $.ajax({
-			url: "//formspree.io/f/mzbkzdep", 
-			method: "POST",
-			data: {message: message},
-			dataType: "json"
-		    });
-		    window.location = '//ednition.github.io/testsite/thankyou/index.html';
-		    return false;
-		});
-	</script>
       </div>			    
     </section>	
 				     
@@ -1037,7 +1020,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     xhr.send(data);
   }
 </script>       
-                                 
+               
+<script>
+	var message = "";
+
+	$("#sendMessage").click(function() {
+	    message = $("#contactform").serialize();
+	    $.ajax({
+		url: "//formspree.io/f/mzbkzdep", 
+		method: "POST",
+		data: {message: message},
+		dataType: "json"
+	    });
+	    window.location = '//ednition.github.io/testsite/thankyou/index.html';
+	    return false;
+	});
+</script>
+					
+					
 </body>
                                  
 
